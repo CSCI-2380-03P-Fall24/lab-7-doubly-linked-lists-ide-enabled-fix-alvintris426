@@ -21,7 +21,7 @@ jobs:
         setup-command: ''
         command: make test try=listSize
         timeout: 10
-        max-score: 1
+        max-score: 5
     - name: addFront
       id: addfront
       uses: classroom-resources/autograding-command-grader@v1
@@ -30,6 +30,7 @@ jobs:
         setup-command: ''
         command: make test try=addFront
         timeout: 10
+        max-score: 5
     - name: addBack
       id: addback
       uses: classroom-resources/autograding-command-grader@v1
@@ -38,6 +39,7 @@ jobs:
         setup-command: ''
         command: make test try=addBack
         timeout: 10
+        max-score: 5
     - name: printList
       id: printlist
       uses: classroom-resources/autograding-command-grader@v1
@@ -46,7 +48,7 @@ jobs:
         setup-command: ''
         command: make test try=printList
         timeout: 10
-        max-score: 1
+        max-score: 5
     - name: popBack
       id: popback
       uses: classroom-resources/autograding-command-grader@v1
@@ -55,7 +57,7 @@ jobs:
         setup-command: ''
         command: make test try=popBack
         timeout: 10
-        max-score: 1
+        max-score: 10
     - name: popFront
       id: popfront
       uses: classroom-resources/autograding-command-grader@v1
@@ -64,7 +66,7 @@ jobs:
         setup-command: ''
         command: make test try=popFront
         timeout: 10
-        max-score: 1
+        max-score: 10
     - name: insertStudent
       id: insertstudent
       uses: classroom-resources/autograding-command-grader@v1
@@ -73,7 +75,7 @@ jobs:
         setup-command: ''
         command: make test try=insertStudent
         timeout: 10
-        max-score: 1
+        max-score: 10
     - name: retrieveStudent
       id: retrievestudent
       uses: classroom-resources/autograding-command-grader@v1
@@ -82,7 +84,7 @@ jobs:
         setup-command: ''
         command: make test try=retrieveStudent
         timeout: 10
-        max-score: 1
+        max-score: 10
     - name: removeStudentById
       id: removestudentbyid
       uses: classroom-resources/autograding-command-grader@v1
@@ -91,7 +93,7 @@ jobs:
         setup-command: ''
         command: make test try=removeStudentById
         timeout: 10
-        max-score: 1
+        max-score: 10
     - name: updateGPA
       id: updategpa
       uses: classroom-resources/autograding-command-grader@v1
@@ -100,7 +102,7 @@ jobs:
         setup-command: ''
         command: make test try=updateGPA
         timeout: 10
-        max-score: 1
+        max-score: 5
     - name: mergeList
       id: mergelist
       uses: classroom-resources/autograding-command-grader@v1
@@ -109,7 +111,7 @@ jobs:
         setup-command: ''
         command: make test try=mergeList
         timeout: 10
-        max-score: 1
+        max-score: 10
     - name: honorRoll
       id: honorroll
       uses: classroom-resources/autograding-command-grader@v1
@@ -118,7 +120,16 @@ jobs:
         setup-command: ''
         command: make test try=honorRoll
         timeout: 10
-        max-score: 1
+        max-score: 10
+    - name: removeBelowGPA
+      id: removebelowgpa
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: removeBelowGPA
+        setup-command: ''
+        command: make test try=removeBelowGPA
+        timeout: 10
+        max-score: 5
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
@@ -134,5 +145,6 @@ jobs:
         UPDATEGPA_RESULTS: "${{steps.updategpa.outputs.result}}"
         MERGELIST_RESULTS: "${{steps.mergelist.outputs.result}}"
         HONORROLL_RESULTS: "${{steps.honorroll.outputs.result}}"
+        REMOVEBELOWGPA_RESULTS: "${{steps.removebelowgpa.outputs.result}}"
       with:
-        runners: listsize,addfront,addback,printlist,popback,popfront,insertstudent,retrievestudent,removestudentbyid,updategpa,mergelist,honorroll
+        runners: listsize,addfront,addback,printlist,popback,popfront,insertstudent,retrievestudent,removestudentbyid,updategpa,mergelist,honorroll,removebelowgpa
